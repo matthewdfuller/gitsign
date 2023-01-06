@@ -38,6 +38,8 @@ git config --local gpg.x509.program gitsign  # Use gitsign for signing
 git config --local gpg.format x509  # gitsign expects x509 args
 ```
 
+_Note_: If you are using Git versions <= 2.18, run `git config --global gpg.program gitsign` instead of `git config --local gpg.x509.program gitsign`.
+
 All respositories:
 
 ```sh
@@ -231,6 +233,11 @@ When Git invokes signing tools, both stdout and stderr are captured which means
 available, `gitsign` will output information to the TTY output directly. If a
 TTY is not available (e.g. in CI runners, etc.), you can use the `GITSIGN_LOG`
 environment variable to tee logs into a readable location for debugging.
+
+If you are using Git versions <= 2.18, to solve this error you may need to run:
+```
+$ git config --local gpg.program gitsign
+```
 
 ### Verification
 
